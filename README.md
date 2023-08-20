@@ -66,7 +66,7 @@ The data suggests that the total time leads spent on X Education's website highl
 ## Model Building <a name="Model"></a>
 A logistic regression model was chosen to train on the given dataset. Since the dataset is highly imbalanced in which there is more label 0 than 1, a precision-recall curve was used to determine the optimal threshold for the classifier.
 
-![threshold](img/precison-recall.PNG)
+![threshold](img/precison-recall.png)
 Figure 5. Precision-recall vs Threshold chart
 
 The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.33** where the *precision is 0.85* and *recall is 0.75*
