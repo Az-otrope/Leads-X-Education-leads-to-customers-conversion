@@ -36,7 +36,7 @@ A README.md file as a brief look at this repository.
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
 The target of the dataset is the `Converted` column indicating whether the customer churned. The labels are imbalanced as observed below.
 
-![current rate](img/current_conversion_rate.png)
+![current rate](img/current_conversion_rate.png)<br>
 Figure 1. The current Conversion rate at X Education is 38.5%. Legends: 1 — Converted, 0 — Not converted
 
 EDA was performed to closely analyze the features. In general, a service has different advertising platforms (search engines, social media, prints, etc) and target audiences. By understanding and figuring out the key features, X Education can optimize its marketing campaign to drive the conversion rate and other KPIs
@@ -44,10 +44,10 @@ EDA was performed to closely analyze the features. In general, a service has dif
 **Advertisement platforms and target audience** <br>
 The first step is to acquire leads. The two charts below lay out the distribution of X Education's advertising platform and current audience. 
 
-![platforms](img/social_platforms.JPG)
+![platforms](img/social_platforms.JPG)<br>
 Figure 2. Amongst many sources, successfully converted leads are mainly through references.
 
-![audience](img/target_audience.JPG)
+![audience](img/target_audience.JPG)<br>
 Figure 3. Working professionals are more likely to convert than unemployed audience
 
 We can see that X Education utilized paid search engines, paid social and even traditional print media. Most converted leads are acquired through its main website where the user **fills out a form** and from **past referrals**. The two primary audiences are **working professionals** and the unemployed, in which the professionals exhibit a significantly high rate of conversion
@@ -55,10 +55,10 @@ We can see that X Education utilized paid search engines, paid social and even t
 **Interactive Communication**
 After the acquisition, the sale team can focus on nurturing leads by starting emails and message campaigns.
 
-![time](img/time_spent.JPG)
+![time](img/time_spent.JPG)<br>
 Figure 4. Leads who spent more time on X Education websites are more likely to become customers regardless of their visit frequency and page views. Legends: 1 — Converted, 0 — Not converted
 
-![activity](img/last_activity.JPG)
+![activity](img/last_activity.JPG)<br>
 Figure 5. Last activity performed by leads
 
 The data suggests that the total time leads spent on X Education's website highly correlates with the conversion and the audience engages better on SMS and email communication. Therefore, a campaign on improving the website content, users' experience, and strategic communication can boost the conversion rate. 
@@ -66,8 +66,8 @@ The data suggests that the total time leads spent on X Education's website highl
 ## Model Building <a name="Model"></a>
 A logistic regression model was chosen to train on the given dataset. Since the dataset is highly imbalanced in which there is more label 0 than 1, a precision-recall curve was used to determine the optimal threshold for the classifier.
 
-![threshold](img/precison-recall.png)
-Figure 5. Precision-recall vs Threshold chart
+![threshold](img/precison-recall.png)<br>
+Figure 6. Precision-recall vs Threshold chart
 
 The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.33** where the *precision is 0.85* and *recall is 0.75*
 
