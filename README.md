@@ -12,7 +12,10 @@ The motivation for this project is to understand factors attracting users and co
 
 **Background:** X Education provides online courses to industry professionals. Many professionals who are interested in the courses land on the website and browse for courses. X education advertises its courses across several marketing platforms such as Google, Olark chat, etc. Once visitors land on the website, they might perform engagement activities such as browsing courses, filling up forms, or watching some videos. When visitors fill up forms providing their email address or phone number, they get converted to leads. The company also acquires leads through past referrals. Once leads are acquired, employees from the sales team phone and email campaigns. Through this process, a fraction of generated leads get converted into customers. However, the typical lead conversion rate at X education is around 30%, which is something this notebook attempts to improve.
 
-**The goal** of this project is to improve the conversion rate of visitors to customers for X Education. A logistic regression model identifies the impactful marketing and sale factors. The model is to assign a lead score on each lead. The higher the score, the higher the conversion chance.
+**The goal** of this project is to improve the conversion rate of visitors to customers for X Education. A *logistic regression model* identifies the impactful marketing and sales factors. The model is to assign a lead score on each lead. The higher the score, the higher the conversion chance.
+
+![funnel](img/conversion_funnel.jpg)<br>
+Leads to Customers Conversion Funnel.
 
 ## Installation <a name="Installation"></a>
 The following packages and versions are used in this notebook. Any newer versions should work. 
@@ -53,21 +56,21 @@ Figure 3. Working professionals are more likely to convert than unemployed audie
 We can see that X Education utilized paid search engines, paid social and even traditional print media. Most converted leads are acquired through its main website where the user **fills out a form** and from **past referrals**. The two primary audiences are **working professionals** and the unemployed, in which the professionals exhibit a significantly high rate of conversion
 
 **Interactive Communication**
-After the acquisition, the sale team can focus on nurturing leads by starting emails and message campaigns.
+After the acquisition, the sales team can focus on nurturing leads by starting emails and message campaigns.
 
 ![time](img/time_spent.JPG)<br>
 Figure 4. Leads who spent more time on X Education websites are more likely to become customers regardless of their visit frequency and page views. Legends: 1 — Converted, 0 — Not converted
 
 ![activity](img/last_activity.JPG)<br>
-Figure 5. Last activity performed by leads
+Figure 5. The last activity performed by leads
 
-The data suggests that the total time leads spent on X Education's website highly correlates with the conversion and the audience engages better on SMS and email communication. Therefore, a campaign on improving the website content, users' experience, and strategic communication can boost the conversion rate. 
+The data suggests that the total time leads spent on X Education's website highly correlates with the conversion and the audience engages better in SMS and email communication. Therefore, a campaign on improving the website content, users' experience, and strategic communication can boost the conversion rate. 
 
 ## Model Building <a name="Model"></a>
 A logistic regression model was chosen to train on the given dataset. Since the dataset is highly imbalanced in which there is more label 0 than 1, a precision-recall curve was used to determine the optimal threshold for the classifier.
 
 ![threshold](img/precison-recall.png)<br>
-Figure 6. Precision-recall vs Threshold chart
+Figure 6. Precision-recall vs. Threshold chart
 
 The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.33** where the *precision is 0.85* and *recall is 0.75*
 
