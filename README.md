@@ -17,7 +17,7 @@ The motivation for this project is to understand factors attracting users and co
 Leads to Customers Conversion Funnel.
 
 ## Project Workflow <a name="Workflow"></a>
-![BFD](img/bfd.png)<br>
+![BFD](img/BFD.png)<br>
 Figure 1. Workflow to build a classification model to improve the conversion rate of leads to customers for X-Education online platform
 
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
