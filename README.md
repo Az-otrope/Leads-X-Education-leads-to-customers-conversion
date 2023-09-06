@@ -36,14 +36,11 @@ The following steps were taken to process and prepare the data for visualization
 The first step is to acquire leads. The two charts below lay out the distribution of X Education's advertising platform and current audience. 
 
 ![platforms](img/leads_sources.png)<br>
-Figure 2. Amongst many sources, successfully converted leads are mainly through references.
-
-![audience](img/target_audience.JPG)<br>
-Figure 3. Working professionals are more likely to convert than unemployed audience
+Figure 2. Amongst many sources, successfully converted leads are mainly through references and those who fill out the application form. Besides, working professionals are more likely to convert than unemployed audience
 
 After the acquisition, the sales team can focus on nurturing leads by starting emails and message campaigns.
 ![time](img/time_spent.JPG)<br>
-Figure 4. Leads who spent more time on X Education websites are more likely to become customers regardless of their visit frequency and page views. Legends: 1 — Converted, 0 — Not converted
+Figure 3. Leads who spent more time on X Education websites are more likely to become customers regardless of their visit frequency and page views. Legends: 1 — Converted, 0 — Not converted
 
 **Key Findings**
 - Total time leads spent on X Education's website highly correlates with the conversion
@@ -57,7 +54,7 @@ I compared the performance of 4 classification models: logistic, KNN, decision t
 *Logistic regression* model is chosen for its simplicity. Due to the imbalance in the target labels, a precision-recall tradeoff analysis is more appropriate to identify the optimal threshold for the classifier. 
 
 ![threshold](img/precision-recall.png)<br>
-Figure 6. Precision-recall vs. Threshold chart
+Figure 4. Precision-recall vs. Threshold chart
 
 The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.37** where the *precision is 0.85* and *recall is 0.80*
 
