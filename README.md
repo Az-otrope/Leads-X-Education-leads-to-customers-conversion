@@ -1,9 +1,8 @@
 # X-Education Leads Scoring Model
 - [Motivation](#Project-Motivation)
-- [Installation](#Installation)
-- [File Descriptions](#File-Descriptions)
-- [Instructions](#How-To-Run-This-Project)
+- [Project Workflow](#Workflow)
 - [Exploratory Data Analysis (EDA)](#EDA)
+- [Data Processing](#Processing)
 - [Model Building](#Model)
 - [Licensing, Authors, Acknowledgements](#License)
 
@@ -12,67 +11,61 @@ The motivation for this project is to understand factors attracting users and co
 
 **Background:** X Education provides online courses to industry professionals. Many professionals who are interested in the courses land on the website and browse for courses. X education advertises its courses across several marketing platforms such as Google, Olark chat, etc. Once visitors land on the website, they might perform engagement activities such as browsing courses, filling up forms, or watching some videos. When visitors fill up forms providing their email address or phone number, they get converted to leads. The company also acquires leads through past referrals. Once leads are acquired, employees from the sales team phone and email campaigns. Through this process, a fraction of generated leads get converted into customers. However, the typical lead conversion rate at X education is around 30%, which is something this notebook attempts to improve.
 
-**The goal** of this project is to improve the conversion rate of visitors to customers for X Education. A *logistic regression model* identifies the impactful marketing and sales factors. The model is to assign a lead score on each lead. The higher the score, the higher the conversion chance.
+**The goal** of this project is to improve the conversion rate of visitors to customers for X Education by building a predictive classification model. A *logistic regression model* identifies the impactful marketing and sales factors. The model is to assign a lead score on each lead. The higher the score, the higher the conversion chance.
 
 ![funnel](img/conversion_funnel.jpg)<br>
 Leads to Customers Conversion Funnel.
 
-## Installation <a name="Installation"></a>
-The following packages and versions are used in this notebook. Any newer versions should work. 
-| Package  | Version |
-| ------------- | ------------- |
-| Python  | 3.8.5  |
-| Pandas  | 1.1.3  |
-| Numpy   | 1.19.2 |
-| Matplotlib | 3.3.2|
-
-## File Description <a name="File-Descriptions"></a>
-There are 4 files in this repository. <br>
-The original dataset and info are provided in `.xlsx` and `.csv` files <br>
-A Jupyter notebook `.ipynb` includes the process of reading in, preprocessing, and modeling the dataset. <br>
-A README.md file as a brief look at this repository.
-
-## Instructions <a name="How-To-Run-This-Project"></a>
-* Execute the codes in this notebook and follow along with the insights to understand the decisions made throughout the process.
-* The main findings and results of this project can be found in this [post](https://medium.com/@nguyenpham111/tips-to-improve-conversion-rate-for-online-educational-providers-fd84c9a43226)
+## Project Workflow <a name="Workflow"></a>
+![BFD](img/bfd.png)<br>
+Figure 1. Workflow to build a classification model to improve the conversion rate of leads to customers for X-Education online platform
 
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
-The target of the dataset is the `Converted` column indicating whether the customer churned. The labels are imbalanced as observed below.
+The current conversion rate at X Education is 38.5%. 
 
-![current rate](img/current_conversion_rate.png)<br>
-Figure 1. The current Conversion rate at X Education is 38.5%. Legends: 1 — Converted, 0 — Not converted
+The target of the dataset is the 'Converted' column indicating whether the customer churned. The labels are imbalanced as observed below. An overview of the dataset:
+- Some categorical features have more than 45% missing values and some with very few variations in values.
+- Some numerical features contain outliers and missing values that need to be evaluated on how to be best imputed.
+  
+## Data Processing <a name="Processing"></a>
+The following steps were taken to process and prepare the data for visualization and model building.
+- Outliers treatment by capping the outliers with left and right limits
+- Impute missing values with scikit-learn InterativeImputer (each feature is modeled as a function of the other features)
 
-EDA was performed to closely analyze the features. In general, a service has different advertising platforms (search engines, social media, prints, etc) and target audiences. By understanding and figuring out the key features, X Education can optimize its marketing campaign to drive the conversion rate and other KPIs
-
-**Advertisement platforms and target audience** <br>
+**Leads acquisition** <br>
 The first step is to acquire leads. The two charts below lay out the distribution of X Education's advertising platform and current audience. 
 
-![platforms](img/social_platforms.JPG)<br>
+![platforms](img/leads_sources.JPG)<br>
 Figure 2. Amongst many sources, successfully converted leads are mainly through references.
 
 ![audience](img/target_audience.JPG)<br>
 Figure 3. Working professionals are more likely to convert than unemployed audience
 
-We can see that X Education utilized paid search engines, paid social and even traditional print media. Most converted leads are acquired through its main website where the user **fills out a form** and from **past referrals**. The two primary audiences are **working professionals** and the unemployed, in which the professionals exhibit a significantly high rate of conversion
-
-**Interactive Communication**
 After the acquisition, the sales team can focus on nurturing leads by starting emails and message campaigns.
-
 ![time](img/time_spent.JPG)<br>
 Figure 4. Leads who spent more time on X Education websites are more likely to become customers regardless of their visit frequency and page views. Legends: 1 — Converted, 0 — Not converted
 
-![activity](img/last_activity.JPG)<br>
-Figure 5. The last activity performed by leads
-
-The data suggests that the total time leads spent on X Education's website highly correlates with the conversion and the audience engages better in SMS and email communication. Therefore, a campaign on improving the website content, users' experience, and strategic communication can boost the conversion rate. 
+**Key Findings**
+- Total time leads spent on X Education's website highly correlates with the conversion
+- Most converted leads came from past referrals and website form submission
+- The audience engages better in SMS and email communication
+--> Therefore, a campaign on improving the website content, users' experience, and strategic communication can boost the conversion rate. 
 
 ## Model Building <a name="Model"></a>
-A logistic regression model was chosen to train on the given dataset. Since the dataset is highly imbalanced in which there is more label 0 than 1, a precision-recall curve was used to determine the optimal threshold for the classifier.
+I compared the performance of 4 classification models: logistic, KNN, decision tree, and random forest. Logistic, random forest and KNN models scored high in accuracy, precision, and recall, respectively. 
 
-![threshold](img/precison-recall.png)<br>
+*Logistic regression* model is chosen for its simplicity. Due to the imbalance in the target labels, a precision-recall tradeoff analysis is more appropriate to identify the optimal threshold for the classifier. 
+
+![auc](img/precison-recall.png)<br>
 Figure 6. Precision-recall vs. Threshold chart
 
-The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.33** where the *precision is 0.85* and *recall is 0.75*
+The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.37** where the *precision is 0.85* and *recall is 0.80*
+
+![lift](img/lift_leads_pop.png)<br>
+Figure 7. The lift chart analyzed from the test set with a baseline rate of 1% (sending promotions to the entire sample population)
+
+**Suggestion** Target the top 10% - 30% of the population will potentially result in a 2.3 - 2.5X lift in response rate
 
 ## Licensing, Authors, Acknowledgements <a name="License"></a>
-* The data set, licensing, and other descriptive information are available on [Kaggle](https://www.kaggle.com/lakshmikalyan/lead-scoring-x-online-education)
+* The main findings and results of this project can be found in this [post](https://medium.com/@nguyenpham111/tips-to-improve-conversion-rate-for-online-educational-providers-fd84c9a43226)
+*  The data set, licensing, and other descriptive information are available on [Kaggle](https://www.kaggle.com/lakshmikalyan/lead-scoring-x-online-education)
