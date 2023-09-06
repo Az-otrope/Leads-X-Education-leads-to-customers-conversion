@@ -53,7 +53,7 @@ I compared the performance of 4 classification models: logistic, KNN, decision t
 
 *Logistic regression* model is chosen for its simplicity. Due to the imbalance in the target labels, a precision-recall tradeoff analysis is more appropriate to identify the optimal threshold for the classifier. 
 
-![threshold](img/precision-recall.png)<br>
+![threshold](img/precision_recall.png)<br>
 Figure 4. Precision-recall vs. Threshold chart
 
 The optimal threshold is the point that results in the best balance of precision and recall. This is the same as optimizing the F-score. The **best threshold is 0.37** where the *precision is 0.85* and *recall is 0.80*
